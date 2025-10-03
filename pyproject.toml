@@ -1,0 +1,6 @@
+[project]
+name = "MACRO"
+version = "3.12.0"
+description = "This is the code for a prototype demo Mars Cargo Rocer (MARCO)"
+readme = "README.md"
+dependencies = []
