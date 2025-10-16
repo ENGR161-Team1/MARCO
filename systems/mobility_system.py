@@ -1,1 +1,1 @@
-
+from buildhat import Motor
