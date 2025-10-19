@@ -1,1 +1,1 @@
-# This is just a placeholder for noe
+# This is just a placeholder for now
