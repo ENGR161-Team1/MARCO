@@ -3,4 +3,4 @@ name = "MACRO"
 requires-python = ">= 3.10.0"
 description = "This is the code for a prototype demo Mars Cargo Rover (MARCO)"
 readme = "README.md"
-dependencies = []
+dependencies = ["numpy"]
