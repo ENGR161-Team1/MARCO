@@ -8,6 +8,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.5.0] - 2024-12-04
+
+### Added
+- `Navigation3D` class inheriting from `Location3D` with timestamped logging
+- Navigation state logging (position, velocity, acceleration, orientation)
+- `start_time` tracking for relative timestamps
+
+### Changed
+- Moved `run_continuous_update` from `Location3D` to `Navigation3D`
+- Updated `systems/__init__.py` to export `Location3D` and `Navigation3D`
+
+---
+
 ## [0.4.1] - 2024-12-04
 
 ### Added

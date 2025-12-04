@@ -306,4 +306,4 @@ if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print(f"Stopping navigation. Logged {len(navigator.log)} entries.")
+        print(f"Stopping navigation. Logged {len(navigator.log)} entries across {navigator.log[-1]['timestamp']:.2f} seconds.")
