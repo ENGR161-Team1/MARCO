@@ -7,12 +7,14 @@ This combines the safety ring obstacle avoidance from MotionController
 with real-time navigation tracking using the IMU sensor.
 """
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 import asyncio
 from basehat import IMUSensor
 from systems.mobility_system import MotionController
-from systems.navigation_system import Navigation3D
-
-# Motion controller (handles motors and safety ring)
+from systems.navigation_system import Navigation3D# Motion controller (handles motors and safety ring)
 motion = MotionController(
     front_motor="A",
     turn_motor="B",

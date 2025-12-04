@@ -7,6 +7,10 @@ This combines the safety ring obstacle avoidance from MotionController
 with real-time navigation tracking and visual display.
 """
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 import asyncio
 from basehat import IMUSensor
 from systems.mobility_system import MotionController
