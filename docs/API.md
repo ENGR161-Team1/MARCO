@@ -55,6 +55,7 @@ tracker = Location3D(
 
 | Method | Description |
 |--------|-------------|
+| `get_position()` | Get current position as tuple (x, y, z) |
 | `update_orientation(**kwargs)` | Update orientation from gyroscope (dt) |
 | `update_position(**kwargs)` | Update position from accelerometer (dt, display) |
 
