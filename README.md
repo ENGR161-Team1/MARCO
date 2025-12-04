@@ -2,6 +2,8 @@
 
 **By Karley Hammond, Advay Chandra, Samuel Razor, and Katherine Hampton**
 
+[![Documentation](https://img.shields.io/badge/docs-latest-red.svg)](docs/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Changelog](https://img.shields.io/badge/changelog-latest-green.svg)](CHANGELOG.md) [![Contributing](https://img.shields.io/badge/contributing-guide-blue.svg)](CONTRIBUTING.md)
+
 ## About
 
 This is the code for the third design project for Purdue's Engineering 161 Class, which was to design a small autonomous cargo rover.
