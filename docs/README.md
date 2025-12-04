@@ -1,12 +1,19 @@
-# Documentation
+# MACRO Documentation
 
-This directory contains detailed documentation for the MARCO project.
+This directory contains detailed documentation for the MACRO (Mars Autonomous Cargo Rover Operations) project.
 
 ## Contents
 
-- **API Documentation** - Module and function references
-- **Hardware Guide** - Pin configurations and wiring diagrams
-- **User Guide** - Operating instructions for the rover
+| Document | Description |
+|----------|-------------|
+| [API.md](API.md) | Module and function references |
+| [HARDWARE.md](HARDWARE.md) | Pin configurations, wiring diagrams, and hardware setup |
+
+## Quick Links
+
+- [Main README](../README.md) - Project overview and installation
+- [CHANGELOG](../CHANGELOG.md) - Version history
+- [CONTRIBUTING](../CONTRIBUTING.md) - Contribution guidelines
 
 ## Documentation Status
 
@@ -14,6 +21,6 @@ This directory contains detailed documentation for the MARCO project.
 |----------|--------|
 | README.md | ✅ Complete |
 | CHANGELOG.md | ✅ Active |
-| API Reference | 🚧 Planned |
-| Hardware Guide | 🚧 Planned |
-| User Guide | 🚧 Planned |
+| CONTRIBUTING.md | ✅ Complete |
+| API Reference | ✅ Complete |
+| Hardware Guide | ✅ Complete |
