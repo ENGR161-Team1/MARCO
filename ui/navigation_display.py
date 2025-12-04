@@ -181,22 +181,32 @@ class NavigationDisplay:
                                tags="axis")
     
     def _draw_rover(self):
-        """Draw the rover as a black dot with blue heading arrow."""
+        """Draw the rover as a black dot with blue velocity arrow."""
         # Get screen position (use x, y from position)
         sx, sy = self._world_to_screen(self.position[0], self.position[1])
         
-        # Calculate arrow endpoint based on yaw (heading)
-        heading_rad = math.radians(self.orientation[0])  # yaw
-        end_x = sx + self.arrow_length * math.cos(heading_rad)
-        end_y = sy - self.arrow_length * math.sin(heading_rad)  # Y inverted
+        # Calculate arrow direction and length from velocity (x, y)
+        vx, vy = self.velocity[0], self.velocity[1]
+        speed = math.sqrt(vx**2 + vy**2)
         
-        # Draw blue arrow (below dot)
-        self.canvas.create_line(
-            sx, sy, end_x, end_y,
-            fill=self.arrow_color, width=self.arrow_width,
-            arrow=tk.LAST, arrowshape=(12, 15, 5),
-            tags="rover"
-        )
+        # Only draw arrow if there's meaningful velocity
+        if speed > 0.001:
+            # Scale arrow length by velocity (pixels = m/s * scale)
+            arrow_length = speed * self.scale
+            # Clamp arrow length to reasonable range
+            arrow_length = max(10, min(arrow_length, 100))
+            
+            # Direction from velocity vector
+            end_x = sx + arrow_length * (vx / speed)
+            end_y = sy - arrow_length * (vy / speed)  # Y inverted
+            
+            # Draw blue arrow (below dot)
+            self.canvas.create_line(
+                sx, sy, end_x, end_y,
+                fill=self.arrow_color, width=self.arrow_width,
+                arrow=tk.LAST, arrowshape=(12, 15, 5),
+                tags="rover"
+            )
         
         # Draw black dot (on top)
         self.canvas.create_oval(
