@@ -2,7 +2,7 @@
 
 **By Karley Hammond, Advay Chandra, Samuel Razor, and Katherine Hampton**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) | [Documentation](docs/API.md) | [Contributing](CONTRIBUTING.md) | [Changelog](CHANGELOG.md)
+[![Documentation](https://img.shields.io/badge/docs-latest-red.svg)](docs/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Changelog](https://img.shields.io/badge/changelog-latest-green.svg)](CHANGELOG.md) [![Contributing](https://img.shields.io/badge/contributing-guide-blue.svg)](CONTRIBUTING.md)
 
 ## About
 
