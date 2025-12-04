@@ -4,15 +4,7 @@ This directory contains experimental code and proof-of-concept implementations u
 
 ## Contents
 
-### `LineFinder.py`
-**Purpose**: Grove Line Finder sensor driver  
-**Status**: Complete (ENGR 16X Teaching Team)  
-**Description**: Official driver for the Grove Line Finder sensor. Provides:
-- Digital black/white surface detection
-- `value` property (0 for black, 1 for white)
-- `line_detected` property (True/False for line detection)
-
-### `proof_of_concept.py`
+### `poc1.py`
 **Purpose**: Line following motor control demonstration  
 **Status**: Complete  
 **Description**: Proof-of-concept for line following with motor control featuring:
@@ -20,11 +12,11 @@ This directory contains experimental code and proof-of-concept implementations u
 - Alternating turn direction for line reacquisition
 - Motor pair control with Build HAT
 
+### `poc_2.py`
+**Purpose**: Additional proof-of-concept testing  
+**Status**: Complete  
+**Description**: Extended POC implementation from poc2 branch.
+
 ## Usage
 
 These files are for **testing and reference only**. Production code should use the modules in `systems/` and `basehat/`.
-
-## Related Branches
-
-- `poc1` - Historical branch for line finder POC
-- `poc2` - Historical branch for additional testing

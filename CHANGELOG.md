@@ -14,12 +14,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `CONTRIBUTING.md` with contribution guidelines
 - `docs/API.md` with module and class reference documentation
 - `docs/HARDWARE.md` with hardware setup guide
-- `poc/LineFinder.py` official ENGR 16X sensor driver
-- Enhanced `poc/proof_of_concept.py` with line following implementation
+- `poc/poc1.py` line following motor control demonstration
+- `poc/poc_2.py` additional POC from poc2 branch
 
 ### Changed
+- Renamed `poc/proof_of_concept.py` to `poc/poc1.py`
+- Merged and deleted `poc1` and `poc2` branches into main
 - Updated `docs/README.md` with complete documentation links
 - Updated `poc/README.md` to reflect current POC contents
+- Updated version to 0.4.1 in `pyproject.toml`
+
+### Removed
+- `poc/LineFinder.py` (moved to basehat module)
 
 ---
 
