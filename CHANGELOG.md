@@ -8,6 +8,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.6.1] - 2024-12-05
+
+### Fixed
+- Correct integration order in `update_position()` - position and velocity now update using previous timestep values
+- Position uses: `p(t) = p(t-1) + v(t-1)*dt + 0.5*a(t-1)*dt²`
+- Velocity uses: `v(t) = v(t-1) + a(t-1)*dt`
+- New acceleration calculated after position/velocity update for next iteration
+- Test files now calibrate IMU before starting motors
+
+---
+
 ## [0.6.0] - 2024-12-04
 
 ### Added

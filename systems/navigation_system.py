@@ -253,6 +253,11 @@ class Location3D:
         Transforms local acceleration to global frame and subtracts gravity.
         Applies calibration bias and noise thresholding.
         
+        Uses proper integration order:
+        1. Update position using previous velocity and acceleration
+        2. Update velocity using previous acceleration
+        3. Calculate new acceleration for next iteration
+        
         Args:
             dt (float): Time step in seconds
             display (bool): Print position data if True
@@ -264,7 +269,29 @@ class Location3D:
             print("No IMU sensor provided.")
             return False
         
-        # Read local acceleration from IMU
+        # Store previous acceleration and velocity for integration
+        prev_acceleration = self.acceleration.copy()
+        prev_velocity = self.velocity.copy()
+        
+        # Update position FIRST using previous velocity and acceleration
+        # p = p0 + v0*dt + 0.5*a0*dt^2
+        self.pos = await self.transformer.translate_vector(
+            vector=self.pos,
+            translation=prev_velocity * dt + 0.5 * prev_acceleration * (dt ** 2)
+        )
+        
+        # Update velocity SECOND using previous acceleration
+        # v = v0 + a0*dt
+        self.velocity = await self.transformer.translate_vector(
+            vector=prev_velocity,
+            translation=prev_acceleration * dt
+        )
+        
+        # Apply velocity decay to reduce drift when acceleration is near zero
+        if np.linalg.norm(prev_acceleration) < self.accel_threshold:
+            self.velocity *= (1.0 - self.velocity_decay)
+        
+        # NOW read new acceleration for next iteration
         ax, ay, az = self.imu.getAccel()
         self.accel_local = np.array([ax, ay, az])
         
@@ -272,7 +299,7 @@ class Location3D:
         if self.calibrated:
             self.accel_local -= self.accel_bias
         
-        # Update orientation from gyroscope first (need current orientation for transform)
+        # Update orientation from gyroscope
         await self.update_orientation(dt=dt)
         
         # Transform local acceleration to global frame
@@ -293,28 +320,8 @@ class Location3D:
             if abs(accel_global[i]) < self.accel_threshold:
                 accel_global[i] = 0.0
         
+        # Store new acceleration for next iteration
         self.acceleration = accel_global
-        
-        # Update position: p = p0 + v*dt + 0.5*a*dt^2
-        self.pos = await self.transformer.translate_vector(
-            vector=self.pos,
-            translation=self.velocity * dt + 0.5 * self.acceleration * (dt ** 2)
-        )
-        
-        # Update velocity: v = v0 + a*dt
-        self.velocity = await self.transformer.translate_vector(
-            vector=self.velocity,
-            translation=self.acceleration * dt
-        )
-        
-        # Apply velocity decay to reduce drift when acceleration is near zero
-        if np.linalg.norm(self.acceleration) < self.accel_threshold:
-            self.velocity *= (1.0 - self.velocity_decay)
-        
-        if display:
-            print(f"Position: {self.pos}, Velocity: {self.velocity}, Acceleration: {self.acceleration}")
-        
-        return True
         
         if display:
             print(f"Position: {self.pos}, Velocity: {self.velocity}, Acceleration: {self.acceleration}")
