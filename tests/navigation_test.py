@@ -35,12 +35,20 @@ async def start_navigation():
     await navigator.run_continuous_update(
         update_interval=0.1,
         log_state=True,
-        print_state=True
+        print_state=True,
+        calibrate=False  # Already calibrated in main
     )
 
 
 async def main():
-    """Run safety ring and navigation concurrently."""
+    """Calibrate IMU, then run safety ring and navigation concurrently."""
+    # Calibrate IMU while stationary (before motors start)
+    await navigator.calibrate(samples=50)
+    
+    # Now start the motor
+    motion.start()
+    
+    # Run safety ring and navigation concurrently
     await asyncio.gather(
         motion.start_safety_ring(),
         start_navigation()
@@ -49,7 +57,6 @@ async def main():
 
 if __name__ == "__main__":
     try:
-        motion.start()
         asyncio.run(main())
     except KeyboardInterrupt:
         motion.stop()
